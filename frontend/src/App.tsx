@@ -37,7 +37,11 @@ export function App() {
   const handleConnect = () => {
     // Connect to the Worker. The `partyserver` layer routes
     // the WebSocket to the IncidentAgent Durable Object.
-    const url = `ws://localhost:8787`;
+    // VITE_WORKER_URL=wss://ops-pilot.<your-subdomain>.workers.dev for prod,
+    // falls back to local dev.
+    const workerUrl =
+      (import.meta as any).env?.VITE_WORKER_URL || "ws://localhost:8787";
+    const url = workerUrl;
     setWsUrl(url);
     connect(url);
   };

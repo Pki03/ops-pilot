@@ -10,11 +10,13 @@ compatibility_flags = ["nodejs_compat"]
 binding = "AI"
 
 # Durable Object binding for IncidentAgent
-[durable_objects]
-bindings = [
-  { name = "INCIDENT_AGENT", class_name = "IncidentAgent" }
-]
-migrations_database_name = "ops-pilot-sqlite"
+[[durable_objects.bindings]]
+name = "INCIDENT_AGENT"
+class_name = "IncidentAgent"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["IncidentAgent"]
 
 # Vectorize index binding for runbook knowledge base
 [[vectorize]]
@@ -24,10 +26,5 @@ index_name = "runbook-knowledge"
 # Workflows binding — allows triggering and awaiting Cloudflare Workflows
 [[workflows]]
 binding = "WORKFLOWS"
-class_name = "InvestigateIncident"
 name = "InvestigateIncident"
-
-# Durable Object exports — required for Durable Object bindings
-[exports.IncidentAgent]
-type = "durable-object"
-storage = "sqlite"
+class_name = "InvestigateIncident"
