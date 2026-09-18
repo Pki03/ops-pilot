@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types", "node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": ".",
+    "noEmit": false,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "paths": {
+      "agents": ["./node_modules/agents"]
+    }
+  },
+  "include": ["src/**/*.ts", "scripts/**/*.ts"],
+  "exclude": ["node_modules", "frontend"]
+}

@@ -1,0 +1,33 @@
+# Worker configuration for OpsPilot
+
+name = "ops-pilot"
+main = "src/index.ts"
+compatibility_date = "2025-07-09"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers AI binding — provides the `AI` global for Llama 3.3 and embedding models
+[ai]
+binding = "AI"
+
+# Durable Object binding for IncidentAgent
+[durable_objects]
+bindings = [
+  { name = "INCIDENT_AGENT", class_name = "IncidentAgent" }
+]
+migrations_database_name = "ops-pilot-sqlite"
+
+# Vectorize index binding for runbook knowledge base
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "runbook-knowledge"
+
+# Workflows binding — allows triggering and awaiting Cloudflare Workflows
+[[workflows]]
+binding = "WORKFLOWS"
+class_name = "InvestigateIncident"
+name = "InvestigateIncident"
+
+# Durable Object exports — required for Durable Object bindings
+[exports.IncidentAgent]
+type = "durable-object"
+storage = "sqlite"

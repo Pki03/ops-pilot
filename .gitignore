@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.png
+*.gif
+.env
+.env.local
+.wrangler/
+.vitest/
+coverage/
+frontend/node_modules/
+frontend/dist/
+__pycache__/
+*.swp
+*.swo
+.DS_Store
